@@ -21,4 +21,24 @@
         <item>1</item>
     </string-array>
 
+    <string-array name="listCourseStudy">
+        <item>Курс</item>
+        <item>Первый</item>
+        <item>Второй</item>
+        <item>Третий</item>
+        <item>Четвертый</item>
+    </string-array>
+
+    <string-array name="listSubGroup">
+        <item>Подгруппа</item>
+        <item>Первая подгруппа</item>
+        <item>Вторая подгруппа</item>
+    </string-array>
+
+    <string-array name="listEngOrGer">
+        <item>Иностранная группа</item>
+        <item>Английская группа</item>
+        <item>Немецкая группа</item>
+    </string-array>
+
 </resources>

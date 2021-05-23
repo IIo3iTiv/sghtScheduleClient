@@ -1,23 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".BlankFragmentStudent"
+    android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BlankFragmentStudent">
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:weightSum="100">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_weight="90"
+        android:orientation="vertical"
+        android:gravity="top"
+        android:weightSum="100"
+        tools:ignore="UselessParent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tempId"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Привет Студент!"
-            android:textSize="18sp" />
+            android:text="@string/select_options"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingTop="10dp"/>
+
+        <android.widget.Space
+            android:id="@+id/studentSpaceOne"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            tools:ignore="NestedWeights" />
+
+        <Spinner
+            android:id="@+id/spinnerCourseStudy"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/red_outline"
+            android:spinnerMode="dialog" />
+
+        <android.widget.Space
+            android:id="@+id/studentSpaceTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"/>
+
+        <Spinner
+            android:id="@+id/spinnerGroupName"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/red_outline"
+            android:spinnerMode="dialog" />
+
+        <android.widget.Space
+            android:id="@+id/studentSpaceThree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"/>
+
+        <Spinner
+            android:id="@+id/spinnerSubgroup"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/red_outline"
+            android:spinnerMode="dialog" />
+
+        <android.widget.Space
+            android:id="@+id/studentSpaceFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"/>
+
+        <Spinner
+            android:id="@+id/spinnerEngOrGer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/red_outline"
+            android:spinnerMode="dialog" />
+
+        <android.widget.Space
+            android:id="@+id/studentSpaceFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"/>
+
+        <Button
+            android:id="@+id/btnApply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/custom_button"
+            android:fontFamily="sans-serif"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
-</FrameLayout>
+</LinearLayout>

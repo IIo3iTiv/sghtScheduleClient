@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- <color name=""></color> -->
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="black">#0F0F0F</color>
+    <color name="white">#FAFAFA</color>
     <color name="colorPrimary">	#FF2400</color>
     <color name="colorPrimaryDark">#9966CC</color>
     <color name="colorAccent">#7FFFD4</color>
     <color name="textColor">#FFFFFFFF</color>
     <color name="background">#FDF4E3</color>
+    <color name="background_2">#FFFCF6</color>
     <color name="gradientStartColor">#b82b2b</color>
     <color name="gradientEndColor">#6e0200</color>
 </resources>
