@@ -47,7 +47,7 @@ public class CustomAdapter extends BaseAdapter {
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.custom_spinner_dropdown, null);
 
-        TextView txt = (TextView) convertView.findViewById(R.id.spinner_item_text);
+        TextView txt = convertView.findViewById(R.id.spinner_item_text);
         txt.setText(listItem[position]);
 
         if (position == 0) {

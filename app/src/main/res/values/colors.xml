@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- <color name=""></color> -->
     <color name="black">#0F0F0F</color>
     <color name="white">#FAFAFA</color>
     <color name="colorPrimary">	#FF2400</color>
@@ -9,6 +8,8 @@
     <color name="textColor">#FFFFFFFF</color>
     <color name="background">#FDF4E3</color>
     <color name="background_2">#FFFCF6</color>
-    <color name="gradientStartColor">#b82b2b</color>
-    <color name="gradientEndColor">#6e0200</color>
+    <color name="gradientStartColor">#B92D2D</color>
+    <color name="gradientEndColor">#6E0000</color>
+    <color name="gradientStartColorPressed">#961414</color>
+    <color name="gradientEndColorPressed">#490000</color>
 </resources>

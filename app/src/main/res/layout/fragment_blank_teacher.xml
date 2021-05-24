@@ -16,7 +16,6 @@
         android:layout_weight="90"
         android:orientation="vertical"
         android:gravity="top"
-        android:weightSum="100"
         tools:ignore="UselessParent">
 
         <TextView
@@ -25,37 +24,29 @@
             android:layout_height="wrap_content"
             android:text="@string/select_options"
             android:gravity="center"
-            android:textSize="16sp"
+            android:textSize="@dimen/textSizeSelectOptions"
             android:textColor="@color/black"
-            android:paddingTop="10dp"/>
-
-        <androidx.legacy.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="5"
-            tools:ignore="NestedWeights" />
+            android:layout_marginTop="@dimen/selectOptionsIndent"/>
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/red_outline"
-            android:spinnerMode="dialog" />
-
-        <androidx.legacy.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="10"/>
+            android:layout_height="@dimen/mainHeight"
+            android:background="@drawable/outline"
+            android:spinnerMode="dialog"
+            android:layout_marginTop="@dimen/spinnerIndent"/>
 
         <Button
+            android:id="@+id/btnApply"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
+            android:background="@drawable/states_button"
             android:fontFamily="sans-serif"
             android:text="@string/apply"
             android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="normal" />
+            android:textSize="@dimen/mainTextSize"
+            android:textStyle="normal"
+            android:layout_marginTop="@dimen/buttonIndent" />
 
     </LinearLayout>
 

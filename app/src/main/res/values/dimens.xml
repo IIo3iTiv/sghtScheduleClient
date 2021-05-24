@@ -5,4 +5,14 @@
     <dimen name="spinner_padding_left">5dp</dimen>
     <dimen name="spinner_padding_right">5dp</dimen>
     <dimen name="margin_left">5dp</dimen>
+    <dimen name="main_width">90</dimen>
+    <dimen name="main_indent">15dp</dimen>
+    <dimen name="last_indent">30dp</dimen>
+    <dimen name="textSizeSelectOptions">16sp</dimen>
+    <dimen name="mainHeight">50dp</dimen>
+    <dimen name="mainTextSize">18sp</dimen>
+
+    <dimen name="selectOptionsIndent">10dp</dimen>
+    <dimen name="spinnerIndent">15dp</dimen>
+    <dimen name="buttonIndent">30dp</dimen>
 </resources>
