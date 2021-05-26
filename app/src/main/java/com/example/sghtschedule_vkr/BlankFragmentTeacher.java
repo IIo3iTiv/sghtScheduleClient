@@ -1,38 +1,26 @@
 package com.example.sghtschedule_vkr;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Objects;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import com.example.sghtschedule_vkr.POJO.Datum;
+import com.example.sghtschedule_vkr.POJO.TeacherNameModel;
 
-import static android.content.Context.MODE_PRIVATE;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BlankFragmentTeacher extends Fragment {
 
+    /*
     public static final String APP_PREFERENCES = "ScheduleSettings";
     public static final String KEY_USER = "USER";
     public static final String VALUE_USER = "teacher";
@@ -43,24 +31,46 @@ public class BlankFragmentTeacher extends Fragment {
     String[] listTeacherName, listTeacherNameId;
     Spinner spinner;
     TextView txt;
-    OkHttpClient client = new OkHttpClient();
     String data, position, index;
     Handler mHandler;
     SharedPreferences sharedPreferences;
     Button btnApply;
+
+     */
+    String data;
+    TextView txt;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_blank_teacher, container, false);
         txt = view.findViewById(R.id.tempId);
+        /*
+        txt = view.findViewById(R.id.tempId);
         spinner = view.findViewById(R.id.spinner);
         mHandler = new Handler(Looper.getMainLooper());
         sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         btnApply = view.findViewById(R.id.btnApply);
 
-        getTeacherInfo(view);
+         */
 
+        //getTeacherInfo(view);
+
+        App.getApi().getTeacherName().enqueue(new Callback<TeacherNameModel>() {
+            @Override
+            public void onResponse(@NonNull Call<TeacherNameModel> call, @NonNull Response<TeacherNameModel> response) {
+                if (response.isSuccessful()) {
+                    txt.setText("fsdbdfb");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<TeacherNameModel> call, @NonNull Throwable t) {
+
+            }
+        });
+
+        /*
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -80,10 +90,11 @@ public class BlankFragmentTeacher extends Fragment {
                 saveSettings(position, index, data);
             }
         });
+        */
 
         return view;
     }
-
+    /*
     public void getTeacherInfo(View view) {
         String myURL = "http://13.51.203.240/php/get/getTeacherName/";
         Request request = new Request.Builder()
@@ -127,8 +138,8 @@ public class BlankFragmentTeacher extends Fragment {
         }
 
 
-        CustomAdapter adapter = new CustomAdapter(view.getContext(), listTeacherName);
-        spinner.setAdapter(adapter);
+        //CustomAdapter adapter = new CustomAdapter(view.getContext(), listTeacherName);
+        //spinner.setAdapter(adapter);
 
         if (settingsExists(view)) { getSavedSettings(); }
     }
@@ -166,5 +177,5 @@ public class BlankFragmentTeacher extends Fragment {
         if (saveTeacherName.equals(positionTeacherName) && saveTeacherNameId.equals(positionTeacherId))
             spinner.setSelection(Integer.parseInt(savePosition));
     }
-
+    */
 }
