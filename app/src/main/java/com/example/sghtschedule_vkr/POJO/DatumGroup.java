@@ -3,15 +3,14 @@ package com.example.sghtschedule_vkr.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DatumTeacher {
+public class DatumGroup {
 
     @SerializedName("Id")
     @Expose
     private String id;
-
-    @SerializedName("compName")
+    @SerializedName("shortName")
     @Expose
-    private String compName;
+    private String shortName;
 
     public String getId() {
         return id;
@@ -21,12 +20,12 @@ public class DatumTeacher {
         this.id = id;
     }
 
-    public String getCompName() {
-        return compName;
+    public String getShortName() {
+        return shortName;
     }
 
-    public void setCompName(String compName) {
-        this.compName = compName;
+    public void setShortName(String shortName) {
+        this.shortName = shortName;
     }
 
 }

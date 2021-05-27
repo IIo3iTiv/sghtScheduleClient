@@ -1,26 +1,30 @@
 package com.example.sghtschedule_vkr;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import com.example.sghtschedule_vkr.POJO.DatumTeacher;
+import com.example.sghtschedule_vkr.POJO.TeacherName;
 
-import com.example.sghtschedule_vkr.POJO.Datum;
-import com.example.sghtschedule_vkr.POJO.TeacherNameModel;
-
+import java.io.File;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import static android.content.Context.MODE_PRIVATE;
 
 public class BlankFragmentTeacher extends Fragment {
 
-    /*
     public static final String APP_PREFERENCES = "ScheduleSettings";
     public static final String KEY_USER = "USER";
     public static final String VALUE_USER = "teacher";
@@ -28,55 +32,30 @@ public class BlankFragmentTeacher extends Fragment {
     public static final String KEY_TEACHER_INDEX = "TEACHER_INDEX";
     public static final String KEY_POSITION = "POSITION";
 
-    String[] listTeacherName, listTeacherNameId;
-    Spinner spinner;
-    TextView txt;
-    String data, position, index;
-    Handler mHandler;
-    SharedPreferences sharedPreferences;
     Button btnApply;
-
-     */
-    String data;
+    SharedPreferences sharedPreferences;
     TextView txt;
+    Spinner spinner;
+    String[] listTeacherName, listTeacherId;
+    String position, data, index;
+    View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_blank_teacher, container, false);
-        txt = view.findViewById(R.id.tempId);
-        /*
+        view = inflater.inflate(R.layout.fragment_blank_teacher, container, false);
         txt = view.findViewById(R.id.tempId);
         spinner = view.findViewById(R.id.spinner);
-        mHandler = new Handler(Looper.getMainLooper());
         sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         btnApply = view.findViewById(R.id.btnApply);
+        getTeacherInfo();
 
-         */
-
-        //getTeacherInfo(view);
-
-        App.getApi().getTeacherName().enqueue(new Callback<TeacherNameModel>() {
-            @Override
-            public void onResponse(@NonNull Call<TeacherNameModel> call, @NonNull Response<TeacherNameModel> response) {
-                if (response.isSuccessful()) {
-                    txt.setText("fsdbdfb");
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<TeacherNameModel> call, @NonNull Throwable t) {
-
-            }
-        });
-
-        /*
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 data = spinner.getSelectedItem().toString();
                 position = Integer.toString(i);
-                index = listTeacherNameId[i];
+                index = listTeacherId[i];
             }
 
             @Override
@@ -84,64 +63,40 @@ public class BlankFragmentTeacher extends Fragment {
         });
 
         btnApply.setOnClickListener(view1 -> {
-            if (position.equals("0")) {
-                Toast.makeText(view1.getContext(), R.string.select_options, Toast.LENGTH_LONG).show();
-            } else {
-                saveSettings(position, index, data);
-            }
+            if (position.equals("0")) { Toast.makeText(view1.getContext(), R.string.select_options, Toast.LENGTH_LONG).show(); }
+            else { saveSettings(position, index, data); }
         });
-        */
 
         return view;
     }
-    /*
-    public void getTeacherInfo(View view) {
-        String myURL = "http://13.51.203.240/php/get/getTeacherName/";
-        Request request = new Request.Builder()
-                .url(myURL)
-                .build();
 
-        client.newCall(request).enqueue(new Callback() {
+    public void getTeacherInfo() {
+        App.getApi().getTeacherName().enqueue(new Callback<TeacherName>() {
             @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                e.printStackTrace();
+            public void onResponse(@NonNull Call<TeacherName> call, @NonNull Response<TeacherName> response) {
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    List<DatumTeacher> listDatum = response.body().getData();
+                    listTeacherName = new String[listDatum.size() + 1];
+                    listTeacherId = new String[listDatum.size() + 1];
+                    listTeacherName[0] = "Фамилия И.О.";
+                    listTeacherId[0] = "-1";
+
+                    for (int i = 0; i < listDatum.size(); i++) {
+                        listTeacherName[i+1] = listDatum.get(i).getCompName();
+                        listTeacherId[i+1] = listDatum.get(i).getId();
+                    }
+
+                    CustomAdapter adapter = new CustomAdapter(view.getContext(), listTeacherName);
+                    spinner.setAdapter(adapter);
+
+                    if (settingsExists(view)) { getSavedSettings(); }
+                }
             }
 
             @Override
-            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                data = Objects.requireNonNull(response.body()).string();
-                mHandler.post(() -> postRequest(view, data));
-            }
+            public void onFailure(@NonNull Call<TeacherName> call, @NonNull Throwable t) { }
         });
-    }
-
-    public void postRequest(View view, String params) {
-        try {
-            JSONArray jsonArray = new JSONArray(params);
-            listTeacherName = new String[jsonArray.length() + 1];
-            listTeacherNameId = new String[jsonArray.length() + 1];
-
-            listTeacherName[0] = "Фамилия И.О.";
-            listTeacherNameId[0] = "-1";
-
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-
-                String id = jsonObject.getString("Id");
-                String name = jsonObject.getString("compName");
-
-                listTeacherName[i+1] = name;
-                listTeacherNameId[i+1] = id;
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        //CustomAdapter adapter = new CustomAdapter(view.getContext(), listTeacherName);
-        //spinner.setAdapter(adapter);
-
-        if (settingsExists(view)) { getSavedSettings(); }
     }
 
     public void saveSettings(String position, String id, String teacherName) {
@@ -172,10 +127,9 @@ public class BlankFragmentTeacher extends Fragment {
         saveTeacherName = sharedPreferences.getString(KEY_TEACHER_NAME, "");
 
         positionTeacherName = listTeacherName[Integer.parseInt(savePosition)];
-        positionTeacherId = listTeacherNameId[Integer.parseInt(savePosition)];
+        positionTeacherId = listTeacherId[Integer.parseInt(savePosition)];
 
         if (saveTeacherName.equals(positionTeacherName) && saveTeacherNameId.equals(positionTeacherId))
             spinner.setSelection(Integer.parseInt(savePosition));
     }
-    */
 }

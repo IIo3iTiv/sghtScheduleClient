@@ -4,17 +4,18 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class TeacherName {
+public class GroupInfo {
 
     @SerializedName("data")
     @Expose
-    private List<DatumTeacher> data = null;
+    private List<DatumGroup> group = null;
 
-    public List<DatumTeacher> getData() {
-        return data;
+    public List<DatumGroup> getGroup() {
+        return group;
     }
 
-    public void setData(List<DatumTeacher> data) {
-        this.data = data;
+    public void setGroup(List<DatumGroup> group) {
+        this.group = group;
     }
+
 }
