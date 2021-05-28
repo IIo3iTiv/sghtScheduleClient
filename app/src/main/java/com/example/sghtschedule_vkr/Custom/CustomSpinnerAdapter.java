@@ -1,4 +1,4 @@
-package com.example.sghtschedule_vkr;
+package com.example.sghtschedule_vkr.Custom;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class CustomAdapter extends BaseAdapter {
+import com.example.sghtschedule_vkr.R;
+
+public class CustomSpinnerAdapter extends BaseAdapter {
 
     String[] listItem;
     Context context;
     LayoutInflater inflater;
 
-    public CustomAdapter(Context context, String[] listItem) {
+    public CustomSpinnerAdapter(Context context, String[] listItem) {
         this.context = context;
         this.listItem = listItem;
         inflater = (LayoutInflater.from(context));

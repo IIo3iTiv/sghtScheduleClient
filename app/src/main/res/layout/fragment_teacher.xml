@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".BlankFragmentStudent"
+    tools:context=".Fragments.Settings.FragmentTeacher"
     android:baselineAligned="false"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -16,7 +16,6 @@
         android:layout_weight="90"
         android:orientation="vertical"
         android:gravity="top"
-        android:weightSum="100"
         tools:ignore="UselessParent">
 
         <TextView
@@ -27,36 +26,12 @@
             android:gravity="center"
             android:textSize="@dimen/textSizeSelectOptions"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/selectOptionsIndent" />
+            android:layout_marginTop="@dimen/selectOptionsIndent"/>
 
         <Spinner
-            android:id="@+id/spinnerCourseStudy"
+            android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="@dimen/mainHeight"
-            android:background="@drawable/outline"
-            android:spinnerMode="dialog"
-            android:layout_marginTop="@dimen/spinnerIndent"/>
-
-        <Spinner
-            android:id="@+id/spinnerGroupName"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/mainHeight"
-            android:background="@drawable/outline"
-            android:spinnerMode="dialog"
-            android:layout_marginTop="@dimen/spinnerIndent"/>
-
-        <Spinner
-            android:id="@+id/spinnerSubgroup"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/mainHeight"
-            android:background="@drawable/outline"
-            android:spinnerMode="dialog"
-            android:layout_marginTop="@dimen/spinnerIndent"/>
-
-        <Spinner
-            android:id="@+id/spinnerEngOrGer"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
             android:background="@drawable/outline"
             android:spinnerMode="dialog"
             android:layout_marginTop="@dimen/spinnerIndent"/>
@@ -64,7 +39,7 @@
         <Button
             android:id="@+id/btnApply"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/mainHeight"
+            android:layout_height="wrap_content"
             android:background="@drawable/states_button"
             android:fontFamily="sans-serif"
             android:text="@string/apply"

@@ -1,4 +1,4 @@
-package com.example.sghtschedule_vkr;
+package com.example.sghtschedule_vkr.Fragments.Settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,11 +11,13 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.sghtschedule_vkr.Retrofit.App;
+import com.example.sghtschedule_vkr.Custom.CustomSpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumGroup;
-import com.example.sghtschedule_vkr.POJO.GroupInfo;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.sghtschedule_vkr.POJO.Group;
+import com.example.sghtschedule_vkr.R;
+
 import java.io.File;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
-public class BlankFragmentStudent extends Fragment {
+public class FragmentStudent extends Fragment {
 
     public static final String APP_PREFERENCES = "ScheduleSettings";
     public static final String KEY_USER = "USER";
@@ -42,7 +44,7 @@ public class BlankFragmentStudent extends Fragment {
     boolean settingsFileExists = false;
     String[] listGroupName, listGroupId, listCourseStudy, listSubGroup, listEngOrGer;
     Spinner spinnerGroupName, spinnerCourseStudy, spinnerSubgroup, spinnerEngOrGer;
-    CustomAdapter adapterCourseStudy, adapterGroupName, adapterSubgroup, adapterEngOrGer;
+    CustomSpinnerAdapter adapterCourseStudy, adapterGroupName, adapterSubgroup, adapterEngOrGer;
     SharedPreferences sharedPreferences;
     String coursePosition = "0", groupPosition = "0", subGroupPosition = "0", foreignPosition = "0", courseData, groupIndex, groupData, subGroupData, foreignData;
     Button btnApply;
@@ -51,7 +53,7 @@ public class BlankFragmentStudent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         {
-            view = inflater.inflate(R.layout.fragment_blank_student, container, false);
+            view = inflater.inflate(R.layout.fragment_student, container, false);
             btnApply = view.findViewById(R.id.btnApply);
             spinnerGroupName = view.findViewById(R.id.spinnerGroupName);
             spinnerCourseStudy = view.findViewById(R.id.spinnerCourseStudy);
@@ -64,11 +66,11 @@ public class BlankFragmentStudent extends Fragment {
             sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
 
 
-            adapterCourseStudy = new CustomAdapter(view.getContext(), listCourseStudy);
+            adapterCourseStudy = new CustomSpinnerAdapter(view.getContext(), listCourseStudy);
             spinnerCourseStudy.setAdapter(adapterCourseStudy);
-            adapterSubgroup = new CustomAdapter(view.getContext(), listSubGroup);
+            adapterSubgroup = new CustomSpinnerAdapter(view.getContext(), listSubGroup);
             spinnerSubgroup.setAdapter(adapterSubgroup);
-            adapterEngOrGer = new CustomAdapter(view.getContext(), listEngOrGer);
+            adapterEngOrGer = new CustomSpinnerAdapter(view.getContext(), listEngOrGer);
             spinnerEngOrGer.setAdapter(adapterEngOrGer);
         }
 
@@ -145,9 +147,9 @@ public class BlankFragmentStudent extends Fragment {
     }
 
     public void getGroupInfo(View view, Integer course) {
-        App.getApi().getGroupInfo(course).enqueue(new Callback<GroupInfo>() {
+        App.getApi().getGroupInfo(course).enqueue(new Callback<Group>() {
             @Override
-            public void onResponse(@NonNull Call<GroupInfo> call, @NonNull Response<GroupInfo> response) {
+            public void onResponse(@NonNull Call<Group> call, @NonNull Response<Group> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     List<DatumGroup> listDatum = response.body().getGroup();
@@ -161,7 +163,7 @@ public class BlankFragmentStudent extends Fragment {
                         listGroupId[i+1] = listDatum.get(i).getId();
                     }
 
-                    adapterGroupName = new CustomAdapter(view.getContext(), listGroupName);
+                    adapterGroupName = new CustomSpinnerAdapter(view.getContext(), listGroupName);
                     spinnerGroupName.setAdapter(adapterGroupName);
                     spinnerGroupName.setVisibility(View.VISIBLE);
                     spinnerSubgroup.setVisibility(View.VISIBLE);
@@ -174,8 +176,14 @@ public class BlankFragmentStudent extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<GroupInfo> call, @NonNull Throwable t) {
-                Toast.makeText(view.getContext(), "Ошибка", Toast.LENGTH_LONG).show();
+            public void onFailure(@NonNull Call<Group> call, @NonNull Throwable t) {
+                Toast.makeText(view.getContext(), R.string.errorMessage, Toast.LENGTH_LONG).show();
+                listGroupName = new String[1];
+                listGroupId = new String[1];
+                listGroupName[0] = view.getContext().getResources().getString(R.string.group);
+                listGroupId[0] = view.getContext().getResources().getString(R.string.index);
+                adapterGroupName = new CustomSpinnerAdapter(view.getContext(), listGroupName);
+                spinnerGroupName.setAdapter(adapterGroupName);
             }
         });
     }

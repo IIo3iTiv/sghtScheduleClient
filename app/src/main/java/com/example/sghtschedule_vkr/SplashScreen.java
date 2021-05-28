@@ -4,12 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.sghtschedule_vkr.POJO.CheckWork;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class SplashScreen extends AppCompatActivity {
 
     @Override

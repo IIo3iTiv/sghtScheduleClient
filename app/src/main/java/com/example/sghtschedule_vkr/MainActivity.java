@@ -3,16 +3,18 @@ package com.example.sghtschedule_vkr;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.Toast;
-
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+import com.example.sghtschedule_vkr.Custom.CustomSettingsPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
 
     @Override
@@ -28,6 +30,51 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        viewPager = (ViewPager) findViewById(R.id.simpleViewPager);
+        tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
+
+        TabLayout.Tab monday = tabLayout.newTab();
+        monday.setText(getApplicationContext().getResources().getString(R.string.monday));
+        tabLayout.addTab(monday);
+
+        TabLayout.Tab tuesday = tabLayout.newTab();
+        tuesday.setText(getApplicationContext().getResources().getString(R.string.tuesday));
+        tabLayout.addTab(tuesday);
+
+        TabLayout.Tab wednesday = tabLayout.newTab();
+        wednesday.setText(getApplicationContext().getResources().getString(R.string.wednesday));
+        tabLayout.addTab(wednesday);
+
+        TabLayout.Tab thursday = tabLayout.newTab();
+        thursday.setText(getApplicationContext().getResources().getString(R.string.thursday));
+        tabLayout.addTab(thursday);
+
+        TabLayout.Tab friday = tabLayout.newTab();
+        friday.setText(getApplicationContext().getResources().getString(R.string.friday));
+        tabLayout.addTab(friday);
+
+        TabLayout.Tab saturday = tabLayout.newTab();
+        saturday.setText(getApplicationContext().getResources().getString(R.string.saturday));
+        tabLayout.addTab(saturday);
+
+        CustomSettingsPagerAdapter adapter = new CustomSettingsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
+
     }
 
     @Override
@@ -44,6 +91,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    public void getStudentPair() {
+
+    }
+
+    public void getTeacherPair() {
+
     }
 
 }

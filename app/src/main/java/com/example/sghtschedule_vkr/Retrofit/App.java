@@ -1,6 +1,8 @@
-package com.example.sghtschedule_vkr;
+package com.example.sghtschedule_vkr.Retrofit;
 
 import android.app.Application;
+
+import com.example.sghtschedule_vkr.Retrofit.ServerAPI;
 
 import java.util.concurrent.TimeUnit;
 

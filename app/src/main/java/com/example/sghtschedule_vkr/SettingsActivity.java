@@ -1,23 +1,13 @@
 package com.example.sghtschedule_vkr;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
-import android.widget.Button;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.sghtschedule_vkr.Custom.CustomMainPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -25,9 +15,10 @@ public class SettingsActivity extends AppCompatActivity {
     Window window;
     Toolbar toolbar;
     TextView titleToolbar;
-    private ViewPager mViewPager;
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,37 +41,35 @@ public class SettingsActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(view -> onBackPressed());
         }
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        mViewPager = findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        TabLayout tabLayout = findViewById(R.id.settings_tabs);
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-    }
+        viewPager = (ViewPager) findViewById(R.id.simpleViewPager);
+        tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        TabLayout.Tab tabStudent = tabLayout.newTab();
+        tabStudent.setIcon(R.drawable.outline_person_outline_white_48);
+        tabLayout.addTab(tabStudent);
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+        TabLayout.Tab tabTeacher = tabLayout.newTab();
+        tabTeacher.setIcon(R.drawable.outline_school_white_48);
+        tabLayout.addTab(tabTeacher);
 
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    BlankFragmentStudent bfs = new BlankFragmentStudent();
-                    return bfs;
-                case 1:
-                    BlankFragmentTeacher bft = new BlankFragmentTeacher();
-                    return bft;
-                default:
-                    return null;
+        CustomMainPagerAdapter adapter = new CustomMainPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
             }
-        }
 
-        @Override
-        public int getCount() {
-            return 2;
-        }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) { }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) { }
+        });
+
+        viewPager.setOnTouchListener((view, motionEvent) -> true);
+
     }
 }

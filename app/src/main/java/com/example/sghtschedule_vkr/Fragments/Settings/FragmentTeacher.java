@@ -1,4 +1,4 @@
-package com.example.sghtschedule_vkr;
+package com.example.sghtschedule_vkr.Fragments.Settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +13,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import com.example.sghtschedule_vkr.Retrofit.App;
+import com.example.sghtschedule_vkr.Custom.CustomSpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumTeacher;
-import com.example.sghtschedule_vkr.POJO.TeacherName;
+import com.example.sghtschedule_vkr.POJO.Teacher;
+import com.example.sghtschedule_vkr.R;
 
 import java.io.File;
 import java.util.List;
@@ -23,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import static android.content.Context.MODE_PRIVATE;
 
-public class BlankFragmentTeacher extends Fragment {
+public class FragmentTeacher extends Fragment {
 
     public static final String APP_PREFERENCES = "ScheduleSettings";
     public static final String KEY_USER = "USER";
@@ -43,7 +47,7 @@ public class BlankFragmentTeacher extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_blank_teacher, container, false);
+        view = inflater.inflate(R.layout.fragment_teacher, container, false);
         txt = view.findViewById(R.id.tempId);
         spinner = view.findViewById(R.id.spinner);
         sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
@@ -71,9 +75,9 @@ public class BlankFragmentTeacher extends Fragment {
     }
 
     public void getTeacherInfo() {
-        App.getApi().getTeacherName().enqueue(new Callback<TeacherName>() {
+        App.getApi().getTeacherName().enqueue(new Callback<Teacher>() {
             @Override
-            public void onResponse(@NonNull Call<TeacherName> call, @NonNull Response<TeacherName> response) {
+            public void onResponse(@NonNull Call<Teacher> call, @NonNull Response<Teacher> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     List<DatumTeacher> listDatum = response.body().getData();
@@ -87,7 +91,7 @@ public class BlankFragmentTeacher extends Fragment {
                         listTeacherId[i+1] = listDatum.get(i).getId();
                     }
 
-                    CustomAdapter adapter = new CustomAdapter(view.getContext(), listTeacherName);
+                    CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(view.getContext(), listTeacherName);
                     spinner.setAdapter(adapter);
 
                     if (settingsExists(view)) { getSavedSettings(); }
@@ -95,7 +99,7 @@ public class BlankFragmentTeacher extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<TeacherName> call, @NonNull Throwable t) { }
+            public void onFailure(@NonNull Call<Teacher> call, @NonNull Throwable t) { }
         });
     }
 

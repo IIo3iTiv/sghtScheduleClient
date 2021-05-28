@@ -6,6 +6,16 @@
     <string name="settings_teacher_name">Преподаватель</string>
     <string name="settings_teacher_change_name">Выберите своё ФИО</string>
     <string name="apply">Применить</string>
+    <string name="group">Группа</string>
+    <string name="index">-1</string>
+    <string name="errorMessage">Ошибка при получении данных</string>
+    <string name="monday">ПН</string>
+    <string name="tuesday">ВТ</string>
+    <string name="wednesday">СР</string>
+    <string name="thursday">ЧТ</string>
+    <string name="friday">ПТ</string>
+    <string name="saturday">СБ</string>
+    <string name="sunday">ВС</string>
 
     <string-array name="listCourseStudy">
         <item>Курс</item>
