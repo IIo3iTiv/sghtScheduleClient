@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.sghtschedule_vkr.Retrofit.App;
-import com.example.sghtschedule_vkr.Custom.CustomSpinnerAdapter;
+import com.example.sghtschedule_vkr.Custom.SpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumTeacher;
 import com.example.sghtschedule_vkr.POJO.Teacher;
 import com.example.sghtschedule_vkr.R;
@@ -91,7 +91,7 @@ public class FragmentTeacher extends Fragment {
                         listTeacherId[i+1] = listDatum.get(i).getId();
                     }
 
-                    CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(view.getContext(), listTeacherName);
+                    SpinnerAdapter adapter = new SpinnerAdapter(view.getContext(), listTeacherName);
                     spinner.setAdapter(adapter);
 
                     if (settingsExists(view)) { getSavedSettings(); }
@@ -99,7 +99,15 @@ public class FragmentTeacher extends Fragment {
             }
 
             @Override
-            public void onFailure(@NonNull Call<Teacher> call, @NonNull Throwable t) { }
+            public void onFailure(@NonNull Call<Teacher> call, @NonNull Throwable t) {
+                Toast.makeText(view.getContext(), R.string.errorMessage, Toast.LENGTH_LONG).show();
+                listTeacherName = new String[1];
+                listTeacherId = new String[1];
+                listTeacherName[0] = view.getContext().getResources().getString(R.string.teacherName);
+                listTeacherId[0] = view.getContext().getResources().getString(R.string.teacherIndex);
+                SpinnerAdapter adapter = new SpinnerAdapter(view.getContext(), listTeacherName);
+                spinner.setAdapter(adapter);
+            }
         });
     }
 

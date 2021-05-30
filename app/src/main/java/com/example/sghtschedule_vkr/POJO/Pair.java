@@ -4,17 +4,17 @@ import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class StudentPair {
+public class Pair {
 
     @SerializedName("data")
     @Expose
-    private List<DatumStudentPair> data = null;
+    private List<DatumPair> data = null;
 
-    public List<DatumStudentPair> getData() {
+    public List<DatumPair> getData() {
         return data;
     }
 
-    public void setData(List<DatumStudentPair> data) {
+    public void setData(List<DatumPair> data) {
         this.data = data;
     }
 

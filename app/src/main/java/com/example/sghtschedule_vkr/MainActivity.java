@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.Window;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
-import com.example.sghtschedule_vkr.Custom.CustomSettingsPagerAdapter;
+import com.example.sghtschedule_vkr.Custom.SettingsPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         saturday.setText(getApplicationContext().getResources().getString(R.string.saturday));
         tabLayout.addTab(saturday);
 
-        CustomSettingsPagerAdapter adapter = new CustomSettingsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        SettingsPagerAdapter adapter = new SettingsPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -91,14 +91,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return true;
-    }
-
-    public void getStudentPair() {
-
-    }
-
-    public void getTeacherPair() {
-
     }
 
 }

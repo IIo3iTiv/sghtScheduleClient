@@ -7,7 +7,7 @@ import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
-import com.example.sghtschedule_vkr.Custom.CustomMainPagerAdapter;
+import com.example.sghtschedule_vkr.Custom.MainPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -52,7 +52,7 @@ public class SettingsActivity extends AppCompatActivity {
         tabTeacher.setIcon(R.drawable.outline_school_white_48);
         tabLayout.addTab(tabTeacher);
 
-        CustomMainPagerAdapter adapter = new CustomMainPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+        MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 

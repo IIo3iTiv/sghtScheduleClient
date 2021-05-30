@@ -3,7 +3,7 @@ package com.example.sghtschedule_vkr.POJO;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DatumTeacherPair {
+public class DatumPair {
 
     @SerializedName("date")
     @Expose
@@ -20,6 +20,9 @@ public class DatumTeacherPair {
     @SerializedName("group")
     @Expose
     private String group;
+    @SerializedName("coursStudy")
+    @Expose
+    private String coursStudy;
     @SerializedName("teacher")
     @Expose
     private String teacher;
@@ -71,6 +74,14 @@ public class DatumTeacherPair {
 
     public void setGroup(String group) {
         this.group = group;
+    }
+
+    public String getCoursStudy() {
+        return coursStudy;
+    }
+
+    public void setCoursStudy(String group) {
+        this.coursStudy = coursStudy;
     }
 
     public String getTeacher() {

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="app_name">Расписание СГХТ</string>
     <string name="settings">Настройки</string>
@@ -6,8 +6,11 @@
     <string name="settings_teacher_name">Преподаватель</string>
     <string name="settings_teacher_change_name">Выберите своё ФИО</string>
     <string name="apply">Применить</string>
-    <string name="group">Группа</string>
-    <string name="index">-1</string>
+    <string name="groupName">Группа</string>
+    <string name="groupIndex">-1</string>
+    <string name="teacherName">Фамилия И.О.</string>
+    <string name="teacherIndex">-1</string>
+
     <string name="errorMessage">Ошибка при получении данных</string>
     <string name="monday">ПН</string>
     <string name="tuesday">ВТ</string>
@@ -16,6 +19,34 @@
     <string name="friday">ПТ</string>
     <string name="saturday">СБ</string>
     <string name="sunday">ВС</string>
+
+    <string name="expDate">22 Февр. 2021</string>
+    <string name="expNumPair">1</string>
+    <string name="expTime">11:55 – 12:45</string>
+    <string name="expGroup">ПКС</string>
+    <string name="expTeacher">Никишина Е.В.</string>
+    <string name="expDiscipline">Основы программирования</string>
+    <string name="expAuditorium">201</string>
+    <string name="expSubGroup">Лабораторная работа</string>
+
+    <string name="studentSubGroup_1">Лабораторная работа</string>
+    <string name="studentSubGroup_2">Лабораторная работа</string>
+    <string name="studentSubGroup_3">Лекция</string>
+    <string name="studentSubGroup_4">Немецкий язык</string>
+    <string name="studentSubGroup_5">Английский язык</string>
+
+    <string name="teacherSubGroup_1">Первая подгруппа</string>
+    <string name="teacherSubGroup_2">Вторая подгруппа</string>
+    <string name="teacherSubGroup_3">Общая пара</string>
+    <string name="teacherSubGroup_4">Немецкий язык</string>
+    <string name="teacherSubGroup_5">Английский язык</string>
+
+    <string name="dateMonday" tools:ignore="TypographyDashes">2021-02-15</string>
+    <string name="dateTuesday" tools:ignore="TypographyDashes">2021-02-16</string>
+    <string name="dateWednesday" tools:ignore="TypographyDashes">2021-02-17</string>
+    <string name="dateThursday" tools:ignore="TypographyDashes">2021-02-18</string>
+    <string name="dateFriday" tools:ignore="TypographyDashes">2021-02-19</string>
+    <string name="dateSaturday" tools:ignore="TypographyDashes">2021-02-20</string>
 
     <string-array name="listCourseStudy">
         <item>Курс</item>
@@ -31,10 +62,22 @@
         <item>Вторая подгруппа</item>
     </string-array>
 
+    <string-array name="listSubGroupIndex">
+        <item>-1</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
     <string-array name="listEngOrGer">
         <item>Иностранная группа</item>
         <item>Английская группа</item>
         <item>Немецкая группа</item>
+    </string-array>
+
+    <string-array name="listEngOrGerIndex">
+        <item>-1</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
 </resources>

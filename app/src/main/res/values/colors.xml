@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#0F0F0F</color>
+    <color name="black2">#0B0B0B</color>
+    <color name="black3">#111111</color>
+    <color name="black4">#171717</color>
     <color name="white">#FAFAFA</color>
     <color name="colorPrimary">	#FF2400</color>
     <color name="colorPrimaryDark">#9966CC</color>
@@ -12,4 +15,8 @@
     <color name="gradientEndColor">#6E0000</color>
     <color name="gradientStartColorPressed">#961414</color>
     <color name="gradientEndColorPressed">#490000</color>
+
+    <color name="foreign">#1E676D</color>
+    <color name="general">#FABB0A</color>
+    <color name="laboratory">#CD2A4B</color>
 </resources>

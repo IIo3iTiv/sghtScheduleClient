@@ -9,13 +9,13 @@ import android.widget.TextView;
 
 import com.example.sghtschedule_vkr.R;
 
-public class CustomSpinnerAdapter extends BaseAdapter {
+public class SpinnerAdapter extends BaseAdapter {
 
     String[] listItem;
     Context context;
     LayoutInflater inflater;
 
-    public CustomSpinnerAdapter(Context context, String[] listItem) {
+    public SpinnerAdapter(Context context, String[] listItem) {
         this.context = context;
         this.listItem = listItem;
         inflater = (LayoutInflater.from(context));

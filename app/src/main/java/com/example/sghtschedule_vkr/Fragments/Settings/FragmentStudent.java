@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.sghtschedule_vkr.Retrofit.App;
-import com.example.sghtschedule_vkr.Custom.CustomSpinnerAdapter;
+import com.example.sghtschedule_vkr.Custom.SpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumGroup;
 import com.example.sghtschedule_vkr.POJO.Group;
 import com.example.sghtschedule_vkr.R;
@@ -38,15 +38,17 @@ public class FragmentStudent extends Fragment {
     public static final String KEY_GROUP_DATA = "GROUP_DATA";
     public static final String KEY_SUBGROUP_POSITION = "SUBGROUP_POSITION";
     public static final String KEY_SUBGROUP_DATA = "SUBGROUP_DATA";
+    public static final String KEY_SUBGROUP_INDEX = "SUBGROUP_INDEX";
     public static final String KEY_FOREIGN_POSITION = "FOREIGN_POSITION";
     public static final String KEY_FOREIGN_DATA = "FOREIGN_DATA";
+    public static final String KEY_FOREIGN_INDEX = "FOREIGN_INDEX";
 
     boolean settingsFileExists = false;
-    String[] listGroupName, listGroupId, listCourseStudy, listSubGroup, listEngOrGer;
+    String[] listGroupName, listGroupId, listCourseStudy, listSubGroup, listSubGroupIndex, listEngOrGer, listEngOrGerIndex;
     Spinner spinnerGroupName, spinnerCourseStudy, spinnerSubgroup, spinnerEngOrGer;
-    CustomSpinnerAdapter adapterCourseStudy, adapterGroupName, adapterSubgroup, adapterEngOrGer;
+    SpinnerAdapter adapterCourseStudy, adapterGroupName, adapterSubgroup, adapterEngOrGer;
     SharedPreferences sharedPreferences;
-    String coursePosition = "0", groupPosition = "0", subGroupPosition = "0", foreignPosition = "0", courseData, groupIndex, groupData, subGroupData, foreignData;
+    String coursePosition = "0", groupPosition = "0", subGroupPosition = "0", foreignPosition = "0", courseData, groupIndex, groupData, subGroupData, subGroupIndex, foreignData, foreignIndex;
     Button btnApply;
     View view;
 
@@ -63,14 +65,15 @@ public class FragmentStudent extends Fragment {
             listSubGroup = getResources().getStringArray(R.array.listSubGroup);
             listEngOrGer = getResources().getStringArray(R.array.listEngOrGer);
             listCourseStudy = getResources().getStringArray(R.array.listCourseStudy);
+            listSubGroupIndex = getResources().getStringArray(R.array.listSubGroupIndex);
+            listEngOrGerIndex = getResources().getStringArray(R.array.listEngOrGerIndex);
             sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
 
-
-            adapterCourseStudy = new CustomSpinnerAdapter(view.getContext(), listCourseStudy);
+            adapterCourseStudy = new SpinnerAdapter(view.getContext(), listCourseStudy);
             spinnerCourseStudy.setAdapter(adapterCourseStudy);
-            adapterSubgroup = new CustomSpinnerAdapter(view.getContext(), listSubGroup);
+            adapterSubgroup = new SpinnerAdapter(view.getContext(), listSubGroup);
             spinnerSubgroup.setAdapter(adapterSubgroup);
-            adapterEngOrGer = new CustomSpinnerAdapter(view.getContext(), listEngOrGer);
+            adapterEngOrGer = new SpinnerAdapter(view.getContext(), listEngOrGer);
             spinnerEngOrGer.setAdapter(adapterEngOrGer);
         }
 
@@ -118,6 +121,7 @@ public class FragmentStudent extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 subGroupPosition = Integer.toString(i);
                 subGroupData = listSubGroup[i];
+                subGroupIndex= listSubGroupIndex[i];
             }
 
             @Override
@@ -129,6 +133,7 @@ public class FragmentStudent extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 foreignPosition = Integer.toString(i);
                 foreignData = listEngOrGer[i];
+                foreignIndex = listEngOrGerIndex[i];
             }
 
             @Override
@@ -163,7 +168,7 @@ public class FragmentStudent extends Fragment {
                         listGroupId[i+1] = listDatum.get(i).getId();
                     }
 
-                    adapterGroupName = new CustomSpinnerAdapter(view.getContext(), listGroupName);
+                    adapterGroupName = new SpinnerAdapter(view.getContext(), listGroupName);
                     spinnerGroupName.setAdapter(adapterGroupName);
                     spinnerGroupName.setVisibility(View.VISIBLE);
                     spinnerSubgroup.setVisibility(View.VISIBLE);
@@ -180,9 +185,9 @@ public class FragmentStudent extends Fragment {
                 Toast.makeText(view.getContext(), R.string.errorMessage, Toast.LENGTH_LONG).show();
                 listGroupName = new String[1];
                 listGroupId = new String[1];
-                listGroupName[0] = view.getContext().getResources().getString(R.string.group);
-                listGroupId[0] = view.getContext().getResources().getString(R.string.index);
-                adapterGroupName = new CustomSpinnerAdapter(view.getContext(), listGroupName);
+                listGroupName[0] = view.getContext().getResources().getString(R.string.groupName);
+                listGroupId[0] = view.getContext().getResources().getString(R.string.groupIndex);
+                adapterGroupName = new SpinnerAdapter(view.getContext(), listGroupName);
                 spinnerGroupName.setAdapter(adapterGroupName);
             }
         });
@@ -199,8 +204,10 @@ public class FragmentStudent extends Fragment {
         editor.putString(KEY_GROUP_DATA, groupData);
         editor.putString(KEY_SUBGROUP_POSITION, subGroupPosition);
         editor.putString(KEY_SUBGROUP_DATA, subGroupData);
+        editor.putString(KEY_SUBGROUP_INDEX, subGroupIndex);
         editor.putString(KEY_FOREIGN_POSITION, foreignPosition);
         editor.putString(KEY_FOREIGN_DATA, foreignData);
+        editor.putString(KEY_FOREIGN_INDEX, foreignIndex);
         editor.apply();
     }
 
