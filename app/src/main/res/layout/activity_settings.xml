@@ -38,7 +38,7 @@
         app:tabTextColor="@color/white"
         app:tabUnboundedRipple="false"/>
 
-    <androidx.viewpager.widget.ViewPager
+    <com.example.sghtschedule_vkr.Custom.ViewPagerAdapter
         android:id="@+id/simpleViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -17,6 +17,9 @@ public class DatumPair {
     @SerializedName("timeEnd")
     @Expose
     private String timeEnd;
+    @SerializedName("timeBreak")
+    @Expose
+    private String timeBreak;
     @SerializedName("group")
     @Expose
     private String group;
@@ -66,6 +69,14 @@ public class DatumPair {
 
     public void setTimeEnd(String timeEnd) {
         this.timeEnd = timeEnd;
+    }
+
+    public String getTimeBreak() {
+        return timeBreak;
+    }
+
+    public void setTimeBreak(String timeBreak) {
+        this.timeBreak = timeBreak;
     }
 
     public String getGroup() {

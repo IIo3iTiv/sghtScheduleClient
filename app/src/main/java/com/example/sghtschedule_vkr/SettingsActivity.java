@@ -6,7 +6,7 @@ import android.view.Window;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
+import com.example.sghtschedule_vkr.Custom.ViewPagerAdapter;
 import com.example.sghtschedule_vkr.Custom.MainPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
 
@@ -16,7 +16,7 @@ public class SettingsActivity extends AppCompatActivity {
     Toolbar toolbar;
     TextView titleToolbar;
     TabLayout tabLayout;
-    ViewPager viewPager;
+    ViewPagerAdapter viewPager;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -41,8 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
             toolbar.setNavigationOnClickListener(view -> onBackPressed());
         }
 
-        viewPager = (ViewPager) findViewById(R.id.simpleViewPager);
-        tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
+        viewPager = findViewById(R.id.simpleViewPager);
+        tabLayout = findViewById(R.id.simpleTabLayout);
 
         TabLayout.Tab tabStudent = tabLayout.newTab();
         tabStudent.setIcon(R.drawable.outline_person_outline_white_48);
@@ -55,6 +55,7 @@ public class SettingsActivity extends AppCompatActivity {
         MainPagerAdapter adapter = new MainPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.disableScroll(true);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

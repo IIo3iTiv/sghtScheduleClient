@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -51,11 +52,14 @@ public class FragmentFriday extends Fragment {
     String user, packageName, settingsPath, date, teacherIndex, groupIndex, subGroupIndex, foreignIndex;
     File settingsFile;
     RecyclerView recyclerView;
+    LinearLayout alas;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_friday, container, false);
+        view = inflater.inflate(R.layout.fragment_monday, container, false);
         sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
+        alas = view.findViewById(R.id.alas);
+        alas.setVisibility(View.GONE);
 
         packageName = view.getContext().getApplicationInfo().dataDir;
         settingsPath = packageName + "/shared_prefs/" + APP_PREFERENCES + ".xml";
@@ -77,24 +81,32 @@ public class FragmentFriday extends Fragment {
                     getTeacherPair(date, teacherIndex);
                     break;
             }
+
+            recyclerView = view.findViewById(R.id.recyclerView);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
+        } else {
+            view = inflater.inflate(R.layout.fragment_nope, container, false);
         }
 
-        recyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
 
         return view;
     }
 
     public void getStudentPair(String date, String group, String subGroup, String foreign) {
         App.getApi().getStudentPair(date, group, subGroup, foreign).enqueue(new Callback<Pair>() {
+            @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onResponse(@NonNull Call<Pair> call, @NonNull Response<Pair> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     List<DatumPair> listDatum = response.body().getData();
-                    writeRecycler(view.getContext(), listDatum, "student");
+                    if (listDatum.isEmpty()) {
+                        alas.setVisibility(View.VISIBLE);
+                    } else {
+                        writeRecycler(view.getContext(), listDatum, "student");
+                    }
                 }
             }
 
@@ -108,16 +120,20 @@ public class FragmentFriday extends Fragment {
     public void getTeacherPair(String date, String teacherIndex) {
         App.getApi().getTeacherPair(date, teacherIndex).enqueue(new Callback<Pair>() {
             @Override
-            public void onResponse(Call<Pair> call, Response<Pair> response) {
+            public void onResponse(@NonNull Call<Pair> call, @NonNull Response<Pair> response) {
                 if (response.isSuccessful()) {
                     assert response.body() != null;
                     List<DatumPair> listDatum = response.body().getData();
-                    writeRecycler(view.getContext(), listDatum, "teacher");
+                    if (listDatum.isEmpty()) {
+                        alas.setVisibility(View.VISIBLE);
+                    } else {
+                        writeRecycler(view.getContext(), listDatum, "teacher");
+                    }
                 }
             }
 
             @Override
-            public void onFailure(Call<Pair> call, Throwable t) {
+            public void onFailure(@NonNull Call<Pair> call, @NonNull Throwable t) {
                 Toast.makeText(view.getContext(), R.string.errorMessage, Toast.LENGTH_LONG).show();
             }
         });
@@ -129,7 +145,7 @@ public class FragmentFriday extends Fragment {
         dateStr = getResources().getString(R.string.dateFriday);
         if (dateStr.equals("0")) {
             Calendar now = Calendar.getInstance();
-            now.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            now.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
             Date date = now.getTime();
             dateStr = new SimpleDateFormat("yyyy-MM-dd").format(date);
         }

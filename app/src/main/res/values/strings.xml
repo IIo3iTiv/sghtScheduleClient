@@ -10,8 +10,10 @@
     <string name="groupIndex">-1</string>
     <string name="teacherName">Фамилия И.О.</string>
     <string name="teacherIndex">-1</string>
+    <string name="nope">Похоже вы здесь впервые. Перейдите в настройки.</string>
+    <string name="alas">Увы... Здесь ничего нет.</string>
 
-    <string name="errorMessage">Ошибка при получении данных</string>
+    <string name="errorMessage">При загрузке данных произошла ошибка.\nПроверьте Ваше подключение к сети</string>
     <string name="monday">ПН</string>
     <string name="tuesday">ВТ</string>
     <string name="wednesday">СР</string>
@@ -21,8 +23,9 @@
     <string name="sunday">ВС</string>
 
     <string name="expDate">22 Февр. 2021</string>
-    <string name="expNumPair">1</string>
+    <string name="expNumPair">#1</string>
     <string name="expTime">11:55 – 12:45</string>
+    <string name="expTimeBreak">Перерыв, 30 минут</string>
     <string name="expGroup">ПКС</string>
     <string name="expTeacher">Никишина Е.В.</string>
     <string name="expDiscipline">Основы программирования</string>

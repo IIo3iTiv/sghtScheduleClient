@@ -1,5 +1,6 @@
 package com.example.sghtschedule_vkr.Fragments.Settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.sghtschedule_vkr.MainActivity;
 import com.example.sghtschedule_vkr.Retrofit.App;
 import com.example.sghtschedule_vkr.Custom.SpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumTeacher;
@@ -40,7 +42,7 @@ public class FragmentTeacher extends Fragment {
     SharedPreferences sharedPreferences;
     TextView txt;
     Spinner spinner;
-    String[] listTeacherName, listTeacherId;
+    String[] listTeacherName = {"Фамилия И.О."}, listTeacherId = {"-1"};
     String position, data, index;
     View view;
 
@@ -68,7 +70,12 @@ public class FragmentTeacher extends Fragment {
 
         btnApply.setOnClickListener(view1 -> {
             if (position.equals("0")) { Toast.makeText(view1.getContext(), R.string.select_options, Toast.LENGTH_LONG).show(); }
-            else { saveSettings(position, index, data); }
+            else {
+                saveSettings(position, index, data);
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
         });
 
         return view;
@@ -94,7 +101,7 @@ public class FragmentTeacher extends Fragment {
                     SpinnerAdapter adapter = new SpinnerAdapter(view.getContext(), listTeacherName);
                     spinner.setAdapter(adapter);
 
-                    if (settingsExists(view)) { getSavedSettings(); }
+                    if (settingsExists()) { getSavedSettings(); }
                 }
             }
 
@@ -121,7 +128,7 @@ public class FragmentTeacher extends Fragment {
         editor.apply();
     }
 
-    public boolean settingsExists(View view) {
+    public boolean settingsExists() {
         String user;
         boolean ret;
         String packageName = view.getContext().getApplicationInfo().dataDir;

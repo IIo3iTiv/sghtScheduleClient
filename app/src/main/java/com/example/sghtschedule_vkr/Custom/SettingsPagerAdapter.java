@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentFriday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentMonday;
+import com.example.sghtschedule_vkr.Fragments.Week.FragmentNope;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentSaturday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentThursday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentTuesday;
@@ -42,7 +43,6 @@ public class SettingsPagerAdapter extends FragmentPagerAdapter {
             case 5:
                 FragmentSaturday tabSA = new FragmentSaturday();
                 return tabSA;
-
             default:
                 return null;
         }

@@ -4,6 +4,8 @@
     <color name="black2">#0B0B0B</color>
     <color name="black3">#111111</color>
     <color name="black4">#171717</color>
+    <color name="Grey">#808080</color>
+    <color name="DimGrey">#696969</color>
     <color name="white">#FAFAFA</color>
     <color name="colorPrimary">	#FF2400</color>
     <color name="colorPrimaryDark">#9966CC</color>

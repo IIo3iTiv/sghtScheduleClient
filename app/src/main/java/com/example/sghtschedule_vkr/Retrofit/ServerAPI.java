@@ -1,12 +1,10 @@
 package com.example.sghtschedule_vkr.Retrofit;
 
-import com.example.sghtschedule_vkr.POJO.CheckWork;
 import com.example.sghtschedule_vkr.POJO.Group;
 import com.example.sghtschedule_vkr.POJO.Pair;
 import com.example.sghtschedule_vkr.POJO.Teacher;
 
 import retrofit2.Call;
-import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -17,9 +15,6 @@ public interface ServerAPI {
 
     @GET("php/api/getGroupInfo")
     Call<Group> getGroupInfo(@Query("course") Integer course);
-
-    @GET("php/api/checkWork")
-    Call<CheckWork> checkWork();
 
     @GET("php/api/getStudentPair")
     Call<Pair> getStudentPair(@Query("date") String date, @Query("group") String group, @Query("subGroup") String subGroup, @Query("foreign") String foreign);

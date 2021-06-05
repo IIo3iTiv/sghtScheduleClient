@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        viewPager = (ViewPager) findViewById(R.id.simpleViewPager);
-        tabLayout = (TabLayout) findViewById(R.id.simpleTabLayout);
+        viewPager = findViewById(R.id.simpleViewPager);
+        tabLayout = findViewById(R.id.simpleTabLayout);
 
         TabLayout.Tab monday = tabLayout.newTab();
         monday.setText(getApplicationContext().getResources().getString(R.string.monday));

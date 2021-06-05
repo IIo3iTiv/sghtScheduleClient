@@ -1,5 +1,6 @@
 package com.example.sghtschedule_vkr.Fragments.Settings;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.sghtschedule_vkr.MainActivity;
 import com.example.sghtschedule_vkr.Retrofit.App;
 import com.example.sghtschedule_vkr.Custom.SpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumGroup;
@@ -145,6 +147,9 @@ public class FragmentStudent extends Fragment {
                 Toast.makeText(view1.getContext(), R.string.select_options, Toast.LENGTH_LONG).show();
             } else {
                 saveSettings(coursePosition, courseData, groupPosition, groupIndex, groupData, subGroupPosition, subGroupData, foreignPosition, foreignData);
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 

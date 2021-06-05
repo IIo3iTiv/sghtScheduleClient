@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -101,8 +103,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 holder.txtNumPair.setTextColor(view.getResources().getColor(R.color.foreign));
                 break;
         }
+
+        if (position == dataModelArrayList.size() - 1) {
+            holder.txtTimeBreak.setVisibility(View.INVISIBLE);
+            holder.point.setVisibility(View.INVISIBLE);
+        } else {
+            holder.txtTimeBreak.setText("Перерыв, " + dataModelArrayList.get(position).getTimeBreak() + " минут");
+        }
         
-        holder.txtNumPair.setText(dataModelArrayList.get(position).getNumPair());
+        holder.txtNumPair.setText("#" + dataModelArrayList.get(position).getNumPair());
         holder.txtTime.setText(dataModelArrayList.get(position).getTimeStart() + " - " + dataModelArrayList.get(position).getTimeEnd());
         holder.txtDisc.setText(dataModelArrayList.get(position).getDiscipline());
         holder.txtAudit.setText(dataModelArrayList.get(position).getAuditorium());
@@ -117,19 +126,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtNumPair, txtTime, txtDisc, txtAudit, txtTeacher, txtSubGroup;
-        Button stick;
+        TextView txtNumPair, txtTime, txtDisc, txtAudit, txtTeacher, txtSubGroup, txtTimeBreak;
+        Button stick, point;
 
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txtNumPair = itemView.findViewById(R.id.txtNumPair);
             txtTime = itemView.findViewById(R.id.txtTime);
+            txtTimeBreak = itemView.findViewById(R.id.txtTimeBreak);
             txtDisc = itemView.findViewById(R.id.txtDiscipline);
             txtAudit = itemView.findViewById(R.id.txtAudit);
             txtTeacher = itemView.findViewById(R.id.txtTeacher);
             txtSubGroup = itemView.findViewById(R.id.txtSubGroup);
             stick = itemView.findViewById(R.id.stick);
+            point = itemView.findViewById(R.id.point);
         }
     }
 }
