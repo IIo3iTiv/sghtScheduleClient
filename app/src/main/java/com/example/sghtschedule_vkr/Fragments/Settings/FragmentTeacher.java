@@ -11,17 +11,14 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.example.sghtschedule_vkr.MainActivity;
 import com.example.sghtschedule_vkr.Retrofit.App;
 import com.example.sghtschedule_vkr.Custom.SpinnerAdapter;
 import com.example.sghtschedule_vkr.POJO.DatumTeacher;
 import com.example.sghtschedule_vkr.POJO.Teacher;
 import com.example.sghtschedule_vkr.R;
-
 import java.io.File;
 import java.util.List;
 import retrofit2.Call;
@@ -45,6 +42,7 @@ public class FragmentTeacher extends Fragment {
     String[] listTeacherName = {"Фамилия И.О."}, listTeacherId = {"-1"};
     String position, data, index;
     View view;
+    MainActivity main;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
