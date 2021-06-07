@@ -2,6 +2,7 @@ package com.example.sghtschedule_vkr.Custom;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.sghtschedule_vkr.POJO.DatumPair;
 import com.example.sghtschedule_vkr.R;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.RecyclerViewHolder> {
@@ -21,6 +28,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private final List<DatumPair> dataModelArrayList;
     private final String user;
     View view;
+    Date date;
+
+    @SuppressLint("SimpleDateFormat")
+    DateFormat formatIn = new SimpleDateFormat("yyyy-MM-dd");
+    @SuppressLint("SimpleDateFormat")
+    DateFormat formatOut = new SimpleDateFormat("dd MMM yy");
 
     public RecyclerViewAdapter(Context ctx, List<DatumPair> dataModelArrayList, String user){
         inflater = LayoutInflater.from(ctx);
@@ -35,7 +48,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return new RecyclerViewHolder(view);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onBindViewHolder(@NonNull RecyclerViewAdapter.RecyclerViewHolder holder, int position) {
 
@@ -110,7 +123,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         } else {
             holder.txtTimeBreak.setText("Перерыв, " + dataModelArrayList.get(position).getTimeBreak() + " минут");
         }
-        
+
+        try {
+            date = formatIn.parse(dataModelArrayList.get(position).getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (position == 0) {
+            holder.txtDate.setText(formatOut.format(date));
+        } else {
+            holder.txtDate.setText("");
+        }
+
         holder.txtNumPair.setText("#" + dataModelArrayList.get(position).getNumPair());
         holder.txtTime.setText(dataModelArrayList.get(position).getTimeStart() + " - " + dataModelArrayList.get(position).getTimeEnd());
         holder.txtDisc.setText(dataModelArrayList.get(position).getDiscipline());
@@ -126,7 +151,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     static class RecyclerViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtNumPair, txtTime, txtDisc, txtAudit, txtTeacher, txtSubGroup, txtTimeBreak;
+        TextView txtNumPair, txtTime, txtDisc, txtAudit, txtTeacher, txtSubGroup, txtTimeBreak, txtDate;
         Button stick, point;
 
         public RecyclerViewHolder(@NonNull View itemView) {
@@ -141,6 +166,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             txtSubGroup = itemView.findViewById(R.id.txtSubGroup);
             stick = itemView.findViewById(R.id.stick);
             point = itemView.findViewById(R.id.point);
+            txtDate = itemView.findViewById(R.id.txtDate);
         }
     }
 }

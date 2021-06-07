@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     android:background="@color/background"
     android:orientation="horizontal"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:baselineAligned="false">
 
     <FrameLayout
         android:layout_width="0dp"
@@ -19,14 +20,16 @@
             android:layout_height="match_parent"
             android:background="@color/Grey"
             android:layout_gravity="right"
-            android:layout_marginRight="3dp"/>
+            android:layout_marginRight="3dp"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:layout_width="8dp"
             android:layout_height="8dp"
             android:background="@drawable/streak"
             android:layout_gravity="top|right"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            tools:ignore="RtlHardcoded" />
 
         <Button
             android:id="@+id/point"
@@ -34,7 +37,8 @@
             android:layout_height="8dp"
             android:background="@drawable/streak_gray"
             android:layout_gravity="bottom|right"
-            android:layout_marginBottom="15dp"/>
+            android:layout_marginBottom="15dp"
+            tools:ignore="RtlHardcoded" />
 
     </FrameLayout>
 
@@ -45,17 +49,38 @@
         android:orientation="vertical"
         android:layout_marginTop="5dp">
 
-        <TextView
-            android:id="@+id/txtTime"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="@string/expTime"
-            android:textSize="16sp"
-            android:textColor="@color/black4"
-            android:paddingStart="10dp"
-            tools:ignore="RtlSymmetry" />
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <TextView
+                android:id="@+id/txtTime"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="50"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="@string/expTime"
+                android:textSize="16sp"
+                android:textColor="@color/black4"
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:id="@+id/txtDate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="51"
+                android:gravity="center_vertical|right"
+                android:text="@string/expDate"
+                android:textColor="@color/black4"
+                android:textSize="16sp"
+                tools:ignore="RtlHardcoded" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
