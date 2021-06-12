@@ -44,12 +44,12 @@
     <string name="teacherSubGroup_4">Немецкий язык</string>
     <string name="teacherSubGroup_5">Английский язык</string>
 
-    <string name="dateMonday" tools:ignore="TypographyDashes">2021-02-15</string>
-    <string name="dateTuesday" tools:ignore="TypographyDashes">2021-02-16</string>
-    <string name="dateWednesday" tools:ignore="TypographyDashes">2021-02-17</string>
-    <string name="dateThursday" tools:ignore="TypographyDashes">2021-02-18</string>
-    <string name="dateFriday" tools:ignore="TypographyDashes">2021-02-19</string>
-    <string name="dateSaturday" tools:ignore="TypographyDashes">2021-02-20</string>
+    <string name="dateMonday" tools:ignore="TypographyDashes">0</string>
+    <string name="dateTuesday" tools:ignore="TypographyDashes">0</string>
+    <string name="dateWednesday" tools:ignore="TypographyDashes">0</string>
+    <string name="dateThursday" tools:ignore="TypographyDashes">0</string>
+    <string name="dateFriday" tools:ignore="TypographyDashes">0</string>
+    <string name="dateSaturday" tools:ignore="TypographyDashes">0</string>
 
     <string-array name="listCourseStudy">
         <item>Курс</item>

@@ -33,7 +33,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @SuppressLint("SimpleDateFormat")
     DateFormat formatIn = new SimpleDateFormat("yyyy-MM-dd");
     @SuppressLint("SimpleDateFormat")
-    DateFormat formatOut = new SimpleDateFormat("dd MMM yy");
+    DateFormat formatOut = new SimpleDateFormat("dd MMM");
 
     public RecyclerViewAdapter(Context ctx, List<DatumPair> dataModelArrayList, String user){
         inflater = LayoutInflater.from(ctx);

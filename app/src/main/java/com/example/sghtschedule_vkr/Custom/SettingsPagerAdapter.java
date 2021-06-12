@@ -3,11 +3,9 @@ package com.example.sghtschedule_vkr.Custom;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentFriday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentMonday;
-import com.example.sghtschedule_vkr.Fragments.Week.FragmentNope;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentSaturday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentThursday;
 import com.example.sghtschedule_vkr.Fragments.Week.FragmentTuesday;

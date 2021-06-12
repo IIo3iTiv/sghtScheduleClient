@@ -5,6 +5,8 @@
 
     <item android:drawable="@color/background"/>
 
-    <item android:gravity="fill" android:drawable="@drawable/screen_logo" />
+    <item android:gravity="center">
+        <bitmap android:src="@drawable/screen_logo"/>
+    </item>
 
 </layer-list>

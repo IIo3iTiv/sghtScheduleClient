@@ -53,7 +53,7 @@ public class SpinnerAdapter extends BaseAdapter {
 
         if (position == 0) {
             txt.setHeight(0);
-            txt.setVisibility(convertView.GONE);
+            txt.setVisibility(View.GONE);
         }
 
 

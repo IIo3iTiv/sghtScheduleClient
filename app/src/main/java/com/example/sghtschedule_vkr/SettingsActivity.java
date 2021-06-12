@@ -2,10 +2,16 @@ package com.example.sghtschedule_vkr;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
+
 import com.example.sghtschedule_vkr.Custom.ViewPagerAdapter;
 import com.example.sghtschedule_vkr.Custom.MainPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -72,5 +78,16 @@ public class SettingsActivity extends AppCompatActivity {
 
         viewPager.setOnTouchListener((view, motionEvent) -> true);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -27,8 +27,11 @@
 
         <activity android:name=".MainActivity"
             android:theme="@style/Theme.SghtSchedule_VKR"/>
+
         <activity android:name=".SettingsActivity"
-            android:theme="@style/Theme.SghtSchedule_VKR"/>
+            android:theme="@style/Theme.SghtSchedule_VKR"
+            android:parentActivityName=".MainActivity"/>
+
     </application>
 
 </manifest>

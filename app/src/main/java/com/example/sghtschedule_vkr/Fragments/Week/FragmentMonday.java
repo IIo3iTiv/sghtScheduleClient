@@ -47,19 +47,25 @@ public class FragmentMonday extends Fragment {
     String user, packageName, settingsPath, date, teacherIndex, groupIndex, subGroupIndex, foreignIndex;
     File settingsFile;
     RecyclerView recyclerView;
-    LinearLayout alas;
+    LinearLayout settingsMissing, scheduleMissing;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_monday, container, false);
-        sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
-        alas = view.findViewById(R.id.alas);
-        alas.setVisibility(View.GONE);
+        view = inflater.inflate(R.layout.fragment_weekday, container, false);
+        settingsMissing = view.findViewById(R.id.settings_missing);
+        scheduleMissing = view.findViewById(R.id.schedule_missing);
+        recyclerView = view.findViewById(R.id.recyclerView);
+        settingsMissing.setVisibility(View.GONE);
+        scheduleMissing.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.GONE);
 
+        sharedPreferences = view.getContext().getSharedPreferences(APP_PREFERENCES, MODE_PRIVATE);
         packageName = view.getContext().getApplicationInfo().dataDir;
         settingsPath = packageName + "/shared_prefs/" + APP_PREFERENCES + ".xml";
         settingsFile = new File(settingsPath);
+
         if (settingsFile.exists()) {
+            settingsMissing.setVisibility(View.GONE);
             user = sharedPreferences.getString(KEY_USER, "");
             date = getDate();
 
@@ -77,12 +83,11 @@ public class FragmentMonday extends Fragment {
                     break;
             }
 
-            recyclerView = view.findViewById(R.id.recyclerView);
             LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext());
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.setHasFixedSize(true);
         } else {
-            view = inflater.inflate(R.layout.fragment_nope, container, false);
+            settingsMissing.setVisibility(View.VISIBLE);
         }
 
 
@@ -98,8 +103,9 @@ public class FragmentMonday extends Fragment {
                     assert response.body() != null;
                     List<DatumPair> listDatum = response.body().getData();
                     if (listDatum.isEmpty()) {
-                        alas.setVisibility(View.VISIBLE);
+                        scheduleMissing.setVisibility(View.VISIBLE);
                     } else {
+                        recyclerView.setVisibility(View.VISIBLE);
                         writeRecycler(view.getContext(), listDatum, "student");
                     }
                 }
@@ -120,8 +126,9 @@ public class FragmentMonday extends Fragment {
                     assert response.body() != null;
                     List<DatumPair> listDatum = response.body().getData();
                     if (listDatum.isEmpty()) {
-                        alas.setVisibility(View.VISIBLE);
+                        scheduleMissing.setVisibility(View.VISIBLE);
                     } else {
+                        recyclerView.setVisibility(View.VISIBLE);
                         writeRecycler(view.getContext(), listDatum, "teacher");
                     }
                 }
